@@ -1,0 +1,23 @@
+body {
+	background-image: url(./body-bg.jpg);
+	background-size: cover;
+}
+
+.title-donor, .title-hospital {
+	margin: 0;
+	color: white;
+	font-size: 1.2em;
+}
+.title-hospital {
+	font-size: 1.4em;
+	margin: 5px 0;
+	text-align: center;
+}
+
+.btn.btn-outline-success {
+	margin-top: 1.25em;
+}
+
+.dropdown-item {
+	color: white;
+}
