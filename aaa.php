@@ -1,12 +1,21 @@
+<?php 
+include 'controllers/benhvien_controller.php';
+$benhvien = new C_benhvien();
+$noi_dung = $benhvien->hienthi_index();
+$bang = $noi_dung['bang'];
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="shortcut icon" href="logo.ico">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css"> -->
+  <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-4.1.3.css">
+  <link rel="stylesheet" type="text/css" href="./public/style.css">
 </head>
 
 <body>
@@ -24,25 +33,28 @@
           </a>
           <ul class="navbar-nav mx-auto">
             <li class="nav-item"> <a class="nav-link" href="#">Trang Chủ<br></a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#">Điểm Hiến Máu Trong Tuần<br></a> </li>
             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hiến Máu</a> 
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown" style="color: white">
                 <a class="dropdown-item" href="#">Danh sách</a>
-                <a class="dropdown-item" href="#">Đăng Ký Hiến Máu</a>
+                <a class="dropdown-item" href="dang-ky-hien-mau.php">Đăng Ký Hiến Máu</a>
               </div>
             </li>
 
             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nhận Máu</a> 
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Danh sách</a>
-                <a class="dropdown-item" href="#">Đăng Ký Nhận Máu</a>
+                <a class="dropdown-item" href="dang-ky-nhan-mau.php">Đăng Ký Nhận Máu</a>
               </div>
             </li>
             <li class="nav-item"> <a class="nav-link" href="#">Liên Hệ</a> </li>
           </ul>
+          <?php if(!( isset($_SESSION['sessionid'] ))){ ?>
           <ul class="navbar-nav">
-            <li class="nav-item"> <a class="nav-link" href="./dangnhap.html">Đăng Nhập</a> </li>
-            <li class="nav-item"> <a class="nav-link text-primary" href="./dangky.html">Đăng Ký</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="dang-nhap.php">Đăng Nhập</a> </li>
+            <li class="nav-item"> <a class="nav-link text-primary" href="dang-ky.php">Đăng Ký</a> </li>
           </ul>
+          <?php } else { ?>
           <ul class="navbar-nav">
             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài Khoản</a> 
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
@@ -51,12 +63,13 @@
               </div>
             </li>
           </ul>
+          <?php } ?>
         </div>
       </div>
     </nav>
     <div class="bg-dark">
       <p class="title-donor ml-5">Tìm người hiến máu</p>
-      <form class="ml-3">
+      <form class="ml-3 pr-3" action="" method="post">
         <div class="form-row">
           <div class="form-group col-lg-2">
             <select class="custom-select custom-select-sm mt-3">
@@ -82,7 +95,8 @@
     </div>
     <div class="bg-dark mt-3">
       <p class="title-hospital">Danh sách lượng máu của các bệnh viện (đơn vị: đv máu)</p>
-      <table class="table table-striped table-dark ">
+      <div class="content-hospital">
+        <table class="table table-striped table-dark ">
         <thead>
           <tr>
             <th scope="col">Tên Bệnh Viện</th>
@@ -94,37 +108,44 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">Bạch Mai</th>
-            <td>1000</td>
-            <td>1000</td>
-            <td>1000</td>
-            <td>1000</td>
-            <td>0123456789</td>
-          </tr>
-        </tbody>
-      </table>
-      <p><a href="#">Xem chi tiết>></a></p>
+        <?php 
+          for($i=0; $i < count($bang); $i++) { 
+        ?>  
+            <tr>
+              <th scope="row"><?php echo $bang[$i]->tenBV ?></th>
+              <td><?php echo $bang[$i]->nhomA ?></td>
+              <td><?php echo $bang[$i]->nhomB ?></td>
+              <td><?php echo $bang[$i]->nhomO ?></td>
+              <td><?php echo $bang[$i]->nhomAB ?></td>
+              <td><?php echo $bang[$i]->lienHe ?></td>
+            </tr>
+        <?php
+          }
+        ?>
+      </tbody>
+    </table>
+      </div>
+      <p><a href="danh-sach-benh-vien.php">Xem chi tiết>></a></p>
     </div>
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-6 mb-3">
+        <!-- <div class="col-md-6 mb-3">
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">Địa Điểm Hiến Máu</a>
+            <a href="#" class="list-group-item list-group-item-action active">Địa Điểm Hiến Máu Trong Tuần</a>
             <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
             <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
             <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+            <a href="#" class="list-group-item list-group-item-action disabled">Xem thêm</a>
           </div>
-        </div>
-        <div class="col-md-6 mb-3">
+        </div> -->
+        <div class="col-md-12 mb-3">
           <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action active">Bạn Đọc</a>
             <a href="#" class="list-group-item list-group-item-action">Thông tin cơ bản về máu</a>
             <a href="#" class="list-group-item list-group-item-action">Hiến máu có hại không</a>
             <a href="#" class="list-group-item list-group-item-action">Quyền lợi của người hiến máu</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Cặn dăn của thầy thuốc đối với người hiến máu</a>
+            <a href="#" class="list-group-item list-group-item-action">Cặn dăn của thầy thuốc đối với người hiến máu</a>
           </div>
         </div>
       </div>
