@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../models/nguoidangky_model.php';
+include 'models/nguoidangky_model.php';
 /**
  * 
  */

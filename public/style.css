@@ -14,10 +14,10 @@ body {
 	text-align: center;
 }
 
-.btn.btn-outline-success {
+.btn.btn-light {
 	margin-top: 1.25em;
 }
 
 .dropdown-item {
-	color: white;
+	color: white!important;
 }

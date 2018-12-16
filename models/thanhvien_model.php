@@ -14,12 +14,12 @@ class M_thanhvien extends Database
 	    return $this->execute($param);
 	}
 
-	public function tim_theo_tdn_mk($tenDangNhap, $matKhau)
+	public function tim_theo_tdn($tenDangNhap)
 	{
 
-		$sql="SELECT * FROM khach_hang WHERE tenDangNhap=? AND matKhau=?";
+		$sql="SELECT * FROM thanhvien WHERE tenDangNhap=?";
 		$this->setQuery($sql);
-		return $this->loadRow(array($tenDangNhap,$matKhau));
+		return $this->loadRow(array($tenDangNhap));
 	}
 }
 ?>

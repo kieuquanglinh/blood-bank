@@ -11,6 +11,7 @@ $bang = $noi_dung['bang'];
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="logo.ico">
+  <title>Ngân hàng máu trực tuyến</title>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css"> -->
   <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
@@ -59,7 +60,7 @@ $bang = $noi_dung['bang'];
             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài Khoản</a> 
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Thông Tin</a>
-                <a class="dropdown-item" href="#">Đăng Xuất</a>
+                <a class="dropdown-item" href="dang-xuat.php">Đăng Xuất</a>
               </div>
             </li>
           </ul>
@@ -88,7 +89,7 @@ $bang = $noi_dung['bang'];
             </select>
           </div>
           <div class="form-group col-lg-2">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-light" type="submit">Search</button>
           </div>
         </div>
       </form>

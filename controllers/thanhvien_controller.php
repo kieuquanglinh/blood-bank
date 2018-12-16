@@ -2,7 +2,11 @@
 /**
  * 
  */
+session_start();
 include 'models/thanhvien_model.php';
+if(isset($_SESSION['sessionid'])){
+	header('location: index.php');
+}
 class C_thanhvien
 {	
 	public function dangky()
@@ -44,11 +48,20 @@ class C_thanhvien
 		if(isset($_POST['btnDangnhap'])){
 			$tenDangNhap = $_POST['tenDangNhap'];
 			$matKhau = $_POST['matKhau'];
-			$kq = $thanhvien->tim_theo_tdn_mk($tenDangNhap, $matKhau);
+			$kq = $thanhvien->tim_theo_tdn($tenDangNhap);
 			if($kq){
-				$_SESSION['sessionid'] =rand(); 
-				$_SESSION['tenDangNhap'] = $tenDangNhap;
-				header('location: aaa.php');
+				$noidung = array('kq'=>$kq);
+				$pass = $noidung['kq']->matKhau;
+				if(password_verify($matKhau, $pass)){
+					$_SESSION['sessionid'] =rand(); 
+					$_SESSION['tenDangNhap'] = $tenDangNhap;
+					header('location: index.php');
+					
+				}
+				else{
+					echo "<script>alert('Thông tin đăng nhập không chính xác')</script>";
+				}
+				
 			} else {
 				echo "<script>alert('Thông tin đăng nhập không chính xác')</script>";
 			}
@@ -57,7 +70,7 @@ class C_thanhvien
 	public function dangxuat()
     {
         session_destroy();
-        header('Location: ../index.php');
+        header('Location: dang-nhap.php');
     }
 	
 }

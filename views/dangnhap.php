@@ -13,6 +13,9 @@
     <div class="container">
       <div class="row">
         <div class="mx-auto col-md-6 col-10 p-5" style="background-color: rgba(0,0,0,.6); color: white; border-radius: 10px; box-shadow: 0 2px 3px rgba(0,0,0,.3);">
+          <small class="form-text text-muted text-left">
+              <a href="index.php">Trở về trang chủ</a>
+          </small>
           <h1 class="mb-4">Đăng Nhập</h1>
           <form action="" method="post">
             <div class="form-group"> 
@@ -27,7 +30,7 @@
             </div>
             <button type="submit" class="btn btn-primary" name="btnDangnhap">Đăng nhập</button>
             <small class="form-text text-muted text-right"> Bạn chưa là thành viên?
-              <a href="#">Đăng Ký</a>
+              <a href="dang-ky.php">Đăng Ký</a>
             </small>
           </form>
         </div>

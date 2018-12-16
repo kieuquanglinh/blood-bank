@@ -13,6 +13,9 @@
     <div class="container">
       <div class="row">
         <div class="mx-auto col-lg-6 col-10 p-5" style="background-color: rgba(0,0,0,.6); color: white; border-radius: 10px; box-shadow: 0 2px 3px rgba(0,0,0,.3);">
+          <small class="form-text text-muted text-right">
+              <a href="dang-nhap.php">Trở về đăng nhập</a>
+          </small>
           <h1>Đăng Ký Thành Viên</h1>
           <p class="mb-3">Chào mừng bạn đến với Ngân Hàng Máu Trực Tuyến Hà Nội</p>
           <form class="text-left" action="" method="POST">
