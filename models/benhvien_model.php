@@ -1,5 +1,5 @@
 <?php  
-include 'connection.php';
+include_once 'connection.php';
 
 class M_benhvien extends Database {
     public function chon_tatca($vitri=-1, $limit=-1)

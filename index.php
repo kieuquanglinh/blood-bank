@@ -1,8 +1,20 @@
 <?php 
 include 'controllers/benhvien_controller.php';
+include 'controllers/nhommau_controller.php';
+include 'controllers/quanhuyen_controller.php';
 $benhvien = new C_benhvien();
 $noi_dung = $benhvien->hienthi_index();
 $bang = $noi_dung['bang'];
+
+
+$nhommau = new C_nhommau();
+$nd_nhommau = $nhommau->hienthi_index();
+$bang_nhommau = $nd_nhommau['bang']; // bảng nhóm máu
+// print_r ($nd_nhommau);
+
+$quanhuyen = new C_quanhuyen();
+$nd_quanhuyen = $quanhuyen->hienthi_index();
+$bang_quanhuyen = $nd_quanhuyen['bang'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,10 +29,24 @@ $bang = $noi_dung['bang'];
   <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="bootstrap-4.1.3.css">
   <link rel="stylesheet" type="text/css" href="./public/style.css">
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!-- <script src="./public/js/ajax.hienmau.js"></script> -->
+  
 </head>
 
 <body>
-
+  <script>
+    $(document).ready(function(){
+    $('#timkiem_hienmau').click(function(){
+        $nhommau = $('#sl_nhommau :selected').val();
+        $quanhuyen = $('#sl_quanhuyen :selected').val();
+        $.get("bang-timkiem-hienmau.php",  {nhommau: $nhommau, quanhuyen: $quanhuyen}, function(data){
+            $('#bang_timkiem_hienmau').html(data);
+            // alert(data);
+          });
+    })
+})
+  </script>
   <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
       <div class="container">
@@ -28,12 +54,12 @@ $bang = $noi_dung['bang'];
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar12">
-          <a class="navbar-brand d-none d-md-block" href="#">
+          <a class="navbar-brand d-none d-md-block" href="index.php">
             <i class="fa d-inline fa-lg fa-circle"></i>
             <b> Ngân Hàng Máu</b>
           </a>
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item"> <a class="nav-link" href="#">Trang Chủ<br></a> </li>
+            <li class="nav-item"> <a class="nav-link" href="index.php">Trang Chủ<br></a> </li>
             <li class="nav-item"> <a class="nav-link" href="#">Điểm Hiến Máu Trong Tuần<br></a> </li>
             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hiến Máu</a> 
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown" style="color: white">
@@ -70,29 +96,42 @@ $bang = $noi_dung['bang'];
     </nav>
     <div class="bg-dark">
       <p class="title-donor ml-5">Tìm người hiến máu</p>
-      <form class="ml-3 pr-3" action="" method="post">
+      <div class="ml-3 pr-3">
         <div class="form-row">
           <div class="form-group col-lg-2">
-            <select class="custom-select custom-select-sm mt-3">
-              <option selected>Chọn nhóm Máu</option>
-              <option value="1">Nhóm A</option>
-              <option value="2">Nhóm B</option>
-              <option value="3">Nhóm C</option>
+            <select class="custom-select custom-select-sm mt-3 sl_nhommau" id="sl_nhommau">
+              <option value="" selected>Chọn nhóm Máu</option>
+              <?php 
+                for($i=0; $i < count($bang_nhommau); $i++) { 
+              ?>  
+                <option value="<?=$bang_nhommau[$i]->maNhom ?>"><?=$bang_nhommau[$i]->tenNhom ?></option>
+                </tr>
+              <?php
+                }
+              ?>
             </select>
           </div>
           <div class="form-group col-lg-2">
-            <select class="custom-select custom-select-sm mt-3">
-              <option selected>Chọn quận huyện</option>
-              <option value="1">Nhóm A</option>
-              <option value="2">Nhóm B</option>
-              <option value="3">Nhóm C</option>
+            <select class="custom-select custom-select-sm mt-3 sl_quanhuyen" id="sl_quanhuyen">
+              <option value="" selected>Chọn quận huyện</option>
+              <?php 
+                for($i=0; $i < count($bang_quanhuyen); $i++) { 
+              ?>  
+                <option value="<?=$bang_quanhuyen[$i]->maQH ?>"><?=$bang_quanhuyen[$i]->tenQH ?></option>
+                </tr>
+              <?php
+                }
+              ?>
             </select>
           </div>
           <div class="form-group col-lg-2">
-              <button class="btn btn-light" type="submit">Search</button>
+              <button class="btn btn-light" type="submit" id="timkiem_hienmau" name="timkiem_hienmau">Tìm Kiếm</button>
           </div>
         </div>
-      </form>
+      </div>
+      <!-- Hiển thị tìm kiếm người hiến máu -->
+      <div class="bg-dark mt-2" id="bang_timkiem_hienmau"></div>
+
     </div>
     <div class="bg-dark mt-3">
       <p class="title-hospital">Danh sách lượng máu của các bệnh viện (đơn vị: đv máu)</p>
@@ -191,7 +230,7 @@ $bang = $noi_dung['bang'];
     </div>
   </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- -<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>

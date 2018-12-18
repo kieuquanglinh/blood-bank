@@ -1,12 +1,12 @@
 <?php
-session_start();
+// session_start();
 include 'models/nguoidangky_model.php';
 /**
  * 
  */
 class C_nguoidangky
 {
-	public function hienmau()
+	public function danngky_hienmau()
 	{
 		$nguoidangky = new M_nguoidangky();
 		if(isset($_POST['btnHienmau'])){
@@ -27,7 +27,7 @@ class C_nguoidangky
 		}
 	}
 
-	public function nhanmau()
+	public function dangky_nhanmau()
 	{
 		$nguoidangky = new M_nguoidangky();
 		if(isset($_POST['btnNhanmau'])){
@@ -47,6 +47,20 @@ class C_nguoidangky
 				echo "Đăng ký không thành công. Xin thử lại!";
 			}
 		}
+	}
+
+	public function hienthi_hienmau() {
+		$nguoidangky = new M_nguoidangky();
+		// if(isset($_POST['timkiem_hienmau'])){
+		// 	$nhommau = $_POST['nhommau'];
+		// 	$quanhuyen = $_POST['quanhuyen'];
+		// 	$bang = $nguoidangky->chon_hienmau($nhommau, $quanhuyen);
+		// 	return array('bang'=>$bang);
+		// }
+		$nhommau = $_GET['nhommau'];
+		$quanhuyen = $_GET['quanhuyen'];
+		$bang = $nguoidangky->chon_hienmau($nhommau, $quanhuyen);
+		return array('bang'=>$bang);
 	}
 
 }
