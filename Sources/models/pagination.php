@@ -44,7 +44,7 @@ class pagination{
 			$next 	= '';
 			$end 	= '';
 			if($this->_currentPage < $this->_totalPage){
-				$next 	= "<li class='page-item' ><a class='page-link' href='$actual_link?page=".($this->_currentPage+1)."'>«</a></li>";
+				$next 	= "<li class='page-item' ><a class='page-link' href='$actual_link?page=".($this->_currentPage+1)."'>»</a></li>";
 				$end 	= "<li class='page-item' ><a class='page-link' href='$actual_link?page=".$this->_totalPage."'>End</a></li>";
 			}
 
