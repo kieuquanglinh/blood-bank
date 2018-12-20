@@ -1,9 +1,10 @@
 <?php
 // session_start();
-include 'models/nguoidangky_model.php';
+// include_once 'models/nguoidangky_model.php';
 /**
  * 
  */
+include 'models/pagination.php';
 class C_nguoidangky
 {
 	public function danngky_hienmau()
@@ -51,17 +52,41 @@ class C_nguoidangky
 
 	public function hienthi_hienmau() {
 		$nguoidangky = new M_nguoidangky();
-		// if(isset($_POST['timkiem_hienmau'])){
-		// 	$nhommau = $_POST['nhommau'];
-		// 	$quanhuyen = $_POST['quanhuyen'];
-		// 	$bang = $nguoidangky->chon_hienmau($nhommau, $quanhuyen);
-		// 	return array('bang'=>$bang);
-		// }
 		$nhommau = $_GET['nhommau'];
 		$quanhuyen = $_GET['quanhuyen'];
 		$bang = $nguoidangky->chon_hienmau($nhommau, $quanhuyen);
 		return array('bang'=>$bang);
 	}
+
+	public function hienthi_hienmau_phantrang()
+    {
+		$nguoidangky = new M_nguoidangky();
+		
+        $bang = $nguoidangky->chon_tatca_hienmau();
+		$nhommau = (isset($_REQUEST['nhommau'])) ? $_REQUEST['nhommau'] : "";
+		$quanhuyen = (isset($_REQUEST['quanhuyen'])) ? $_REQUEST['quanhuyen'] : "";
+        $bang_hientai = (isset($_GET['page'])) ? $_GET['page'] : 1;
+        $pagination = new pagination(count($bang), $bang_hientai, 5, 3);
+        $paginationHTML = $pagination->showPagination();
+        $limit = $pagination->_nItemOnPage;
+        $vitri = ($bang_hientai - 1) * $limit;
+        $bang = $nguoidangky->chon_tatca_hienmau($vitri,$limit,$nhommau);
+        return array('bang'=>$bang, 'paginationHTML'=>$paginationHTML);
+	}
+	
+	public function hienthi_nhanmau_phantrang()
+    {
+        $nguoidangky = new M_nguoidangky();
+        $bang = $nguoidangky->chon_tatca_nhanmau();
+
+        $bang_hientai = (isset($_GET['page'])) ? $_GET['page'] : 1;
+        $pagination = new pagination(count($bang), $bang_hientai, 5, 3);
+        $paginationHTML = $pagination->showPagination();
+        $limit = $pagination->_nItemOnPage;
+        $vitri = ($bang_hientai - 1) * $limit;
+        $bang = $nguoidangky->chon_tatca_hienmau($vitri,$limit);
+        return array('bang'=>$bang, 'paginationHTML'=>$paginationHTML);
+    }
 
 }
 ?>

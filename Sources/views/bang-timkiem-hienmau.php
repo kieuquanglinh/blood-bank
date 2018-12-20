@@ -1,5 +1,6 @@
 <?php
-include 'controllers/nguoidangky_controller.php';
+include_once '../models/nguoidangky_model.php';
+include_once '../controllers/nguoidangky_controller.php';
 $nguoihienmau = new C_nguoidangky();
 $nd_nguoihienmau = $nguoihienmau->hienthi_hienmau();
 $bang_nguoihienmau =  $nd_nguoihienmau['bang']; // bảng người hiến múa

@@ -30,10 +30,10 @@ class M_nguoidangky extends Database
                 WHERE hienmau.maNhom = nhommau.maNhom
                 AND hienmau.maQH = quanhuyen.maQH ';
         if($nhommau != ""){
-            $sql .= 'AND hienmau.maNhom = "' . $nhommau. '"'; 
+            $sql .= 'AND hienmau.maNhom = "' . $nhommau. '" '; 
         }
         if($quanhuyen != ""){
-            $sql .= 'AND hienmau.maQH = "'. $quanhuyen .'"'; 
+            $sql .= 'AND hienmau.maQH = "'. $quanhuyen .'" '; 
         }
         $this->setQuery($sql);
         return $this->loadAllRows();
@@ -41,6 +41,38 @@ class M_nguoidangky extends Database
     public function chon_nhanmau()
     {
         $sql = 'SELECT * FROM nhanmau';
+        $this->setQuery($sql);
+        return $this->loadAllRows();
+    }
+
+    public function chon_tatca_hienmau($vitri=-1, $limit=-1, $nhommau="", $quanhuyen="")
+    {
+        $sql = 'SELECT hienmau.hoTen, hienmau.gioiTinh, nhommau.tenNhom, quanhuyen.tenQH, hienmau.dienThoai
+        FROM hienmau, nhommau, quanhuyen
+        WHERE hienmau.maNhom = nhommau.maNhom
+        AND hienmau.maQH = quanhuyen.maQH ';
+        if($nhommau != ""){
+            $sql .= 'AND hienmau.maNhom = "' . $nhommau. '" '; 
+        }
+        if($quanhuyen != ""){
+            $sql .= 'AND hienmau.maQH = "'. $quanhuyen .'" '; 
+        }
+        if($vitri >= 0 &&  $limit > 1){
+            $sql .= " LIMIT $vitri, $limit";
+        }
+        $this->setQuery($sql);
+        return $this->loadAllRows();
+    }
+
+    public function chon_tatca_nhanmau($vitri=-1, $limit=-1)
+    {
+        $sql = 'SELECT hienmau.hoTen, hienmau.gioiTinh, nhommau.tenNhom, quanhuyen.tenQH, hienmau.dienThoai
+        FROM hienmau, nhommau, quanhuyen
+        WHERE hienmau.maNhom = nhommau.maNhom
+        AND hienmau.maQH = quanhuyen.maQH ';
+        if($vitri >= 0 &&  $limit > 1){
+            $sql .= " LIMIT $vitri, $limit";
+        }
         $this->setQuery($sql);
         return $this->loadAllRows();
     }

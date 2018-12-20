@@ -24,29 +24,16 @@ $bang_quanhuyen = $nd_quanhuyen['bang'];
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="logo.ico">
   <title>Ngân hàng máu trực tuyến</title>
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
   <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="bootstrap-4.1.3.css">
   <link rel="stylesheet" type="text/css" href="./public/style.css">
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <!-- <script src="./public/js/ajax.hienmau.js"></script> -->
+  <script src="./public/js/ajax.hienmau.js"></script>
   
 </head>
 
 <body>
-  <script>
-    $(document).ready(function(){
-    $('#timkiem_hienmau').click(function(){
-        $nhommau = $('#sl_nhommau :selected').val();
-        $quanhuyen = $('#sl_quanhuyen :selected').val();
-        $.get("bang-timkiem-hienmau.php",  {nhommau: $nhommau, quanhuyen: $quanhuyen}, function(data){
-            $('#bang_timkiem_hienmau').html(data);
-            // alert(data);
-          });
-    })
-})
-  </script>
   <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
       <div class="container">
@@ -55,15 +42,17 @@ $bang_quanhuyen = $nd_quanhuyen['bang'];
         </button>
         <div class="collapse navbar-collapse" id="navbar12">
           <a class="navbar-brand d-none d-md-block" href="index.php">
-            <i class="fa d-inline fa-lg fa-circle"></i>
+          <i class="fas fa-heartbeat"></i>
             <b> Ngân Hàng Máu</b>
           </a>
           <ul class="navbar-nav mx-auto">
             <li class="nav-item"> <a class="nav-link" href="index.php">Trang Chủ<br></a> </li>
             <li class="nav-item"> <a class="nav-link" href="#">Điểm Hiến Máu Trong Tuần<br></a> </li>
-            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hiến Máu</a> 
+            <li class="nav-item dropdown"> 
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" 
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hiến Máu</a> 
               <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown" style="color: white">
-                <a class="dropdown-item" href="#">Danh sách</a>
+                <a class="dropdown-item" href="danh-sach-hien-mau.php">Danh sách</a>
                 <a class="dropdown-item" href="dang-ky-hien-mau.php">Đăng Ký Hiến Máu</a>
               </div>
             </li>
@@ -192,43 +181,45 @@ $bang_quanhuyen = $nd_quanhuyen['bang'];
     </div>
   </div>
   <div class="bg-info p-4">
-    <div class="container">
-      <div class="row">
-        <div class="p-0 col-lg-4 col-md-6">
-          <img class="img-fluid" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDW8nO9JhT_pEjebobq9pgUF2cEp0EUb1I&amp;markers=folsom+Ave+san+francisco&amp;center=folsom+Ave+san+francisco&amp;zoom=16&amp;size=640x450&amp;sensor=false&amp;scale=2"> </div>
-        <div class="col-md-5 align-self-center p-4 offset-md-1">
-          <h4>Heading</h4>
-          <p class="mb-4 text-primary">795 Folsom Ave, Suite 600 <br>San Francisco, CA 94107 <br> <abbr title="Phone">P:</abbr> (123) 456-7890 </p>
-          <div class="row text-center">
-            <div class="col-md-2 col-3">
-              <a href="#" target="_blank"><i class="fa fa-facebook text-primary fa-2x"></i></a>
-            </div>
-            <div class="col-md-2 col-3">
-              <a href="#" target="_blank"><i class="fa fa-twitter text-primary fa-2x"></i></a>
-            </div>
-            <div class="col-md-2 col-3">
-              <a href="#" target="_blank"><i class="fa fa-instagram text-primary fa-2x"></i></a>
-            </div>
-            <div class="col-md-2 col-3">
-              <a href="#" target="_blank"><i class="fa text-primary fa-2x fa-pinterest-p"></i></a>
+      <div class="container">
+        <div class="row">
+          <div class="p-0 col-lg-4 col-md-6">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.1935868127466!2d105.78926020216767!3d21.02493875151984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4984052283%3A0x405da29983542b07!2zVmnhu4duIEh1eeG6v3QgSOG7jWMgLSBUcnV54buBbiBNw6F1IFRydW5nIMawxqFuZw!5e0!3m2!1svi!2s!4v1545230272218" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
+          <div class="col-md-5 align-self-center p-4 offset-md-1">
+            <h4>Ngân Hàng Máu Trực Tuyến Hà Nội</h4>
+            <p class="mb-4 text-primary">795 Folsom Ave, Suite 600 <br>San Francisco, CA 94107 <br> <abbr title="Phone">P:</abbr>
+              (123) 456-7890 </p>
+            <div class="row text-center">
+              <div class="col-md-2 col-3">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f fa-2x"></i></a>
+              </div>
+              <div class="col-md-2 col-3">
+                <a href="#" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+              </div>
+              <div class="col-md-2 col-3">
+                <a href="#" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+              </div>
+              <div class="col-md-2 col-3">
+                <a href="#" target="_blank"><i class="fab fa-pinterest fa-2x"></i></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="bg-dark py-3">
-    <div class="container">
-      <div class="row d-flex justify-content-between">
-        <div class="col-lg-4 col-md-6">
-          <p class="text-secondary mb-0">Copyright - Lorem ipsum dolor sit amet</p>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <p class="text-secondary mb-0">2018 - Lorem ipsum dolor sit amet</p>
+    <div class="bg-dark py-3">
+      <div class="container">
+        <div class="row d-flex justify-content-between">
+          <div class="col-lg-4 col-md-6">
+            <p class="text-secondary mb-0">Copyright - longnhp62@wru.vn</p>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <p class="text-secondary mb-0">2018 - www.nganhangmauhn.org</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
   <!-- -<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
